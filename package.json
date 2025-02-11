@@ -7,9 +7,16 @@
     "dev": "nodemon src/server.js",
     "seed": "node prisma/seed.js",
     "test": "jest",
-    "migrate": "prisma migrate dev",
-    "setup": "npm install && prisma migrate reset --force && prisma migrate deploy && npm run seed",
-    "vercel-build": "prisma generate && prisma migrate deploy"
+    "migrate": "prisma migrate deploy",
+    "postinstall": "prisma generate",
+    "build": "prisma generate",
+    "vercel-build": "prisma generate && prisma migrate deploy && npm run seed",
+    "setup": "npm install && prisma generate && prisma migrate deploy && npm run seed",
+    "db:push": "prisma db push",
+    "db:reset": "prisma migrate reset --force"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   },
   "keywords": [],
   "author": "",
