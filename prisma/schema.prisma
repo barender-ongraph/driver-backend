@@ -1,0 +1,57 @@
+// This is your Prisma schema file
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Driver {
+  id            Int       @id @default(autoincrement())
+  name          String
+  phoneNumber   String?
+  dailyRate     Decimal   @db.Decimal(10, 2)
+  joinDate      DateTime  @default(now())
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  payments      Payment[]
+  daysOff       DayOff[]
+}
+
+model Payment {
+  id        Int      @id @default(autoincrement())
+  date      DateTime
+  amount    Decimal  @db.Decimal(10, 2)
+  driver    Driver   @relation(fields: [driverId], references: [id])
+  driverId  Int
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([driverId, date])
+}
+
+model DayOff {
+  id        Int      @id @default(autoincrement())
+  date      DateTime
+  reason    String?
+  driver    Driver   @relation(fields: [driverId], references: [id])
+  driverId  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([driverId, date])
+}

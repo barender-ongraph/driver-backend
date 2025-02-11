@@ -1,0 +1,37 @@
+{
+  "name": "driver-payment-backend",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "seed": "node prisma/seed.js",
+    "test": "jest",
+    "migrate": "prisma migrate dev",
+    "postinstall": "prisma generate",
+    "setup": "npm install && prisma generate && prisma migrate deploy && npm run seed",
+    "prepare": "prisma generate",
+    "db:setup": "prisma migrate reset --force && prisma migrate deploy && npm run seed",
+    "build": "prisma generate && prisma migrate deploy",
+    "vercel-build": "prisma generate && prisma migrate deploy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Driver Payment Management System",
+  "dependencies": {
+    "@prisma/client": "^6.3.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.12.0",
+    "prisma": "^6.3.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.3"
+  }
+}
