@@ -8,11 +8,7 @@
     "seed": "node prisma/seed.js",
     "test": "jest",
     "migrate": "prisma migrate dev",
-    "postinstall": "prisma generate",
-    "setup": "npm install && prisma generate && prisma migrate deploy && npm run seed",
-    "prepare": "prisma generate",
-    "db:setup": "prisma migrate reset --force && prisma migrate deploy && npm run seed",
-    "build": "prisma generate && prisma migrate deploy",
+    "setup": "npm install && prisma migrate reset --force && prisma migrate deploy && npm run seed && npm start",
     "vercel-build": "prisma generate && prisma migrate deploy"
   },
   "keywords": [],
