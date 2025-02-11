@@ -13,3 +13,4 @@ yarn-error.log*
 coverage/
 dist/
 build/
+.vercel
